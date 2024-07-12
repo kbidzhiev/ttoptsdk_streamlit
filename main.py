@@ -12,10 +12,8 @@ def function_from_input(input_str):
         return eval(input_str)
     return f 
 
-
-
 user_input = st.text_input(
-    "Input a function to evaluate: (e.f  'np.sum(np.abs(X * np.sin(X) + 0.1 * X), axis=1)' ",
+    "Input a function to evaluate:",
     value="np.sum(np.abs(X * np.sin(X) + 0.1 * X), axis=1)")
 
 d = st.text_input("dim", value = 3)
@@ -36,10 +34,6 @@ if user_input:
     x_opt_real=np.ones(d)
     y_opt_real=0.
 
-
-    
-    
-
 info = None
 if st.button('Optimize'):
     x, y, info = optimize(rank, d, f,
@@ -50,7 +44,6 @@ if st.button('Optimize'):
      #x_opt_real, y_opt_real,
      )
     st.write(f"Min value of the function is: {y}")
-
 
 if info is not None:
     result_json = json.dumps(info)
