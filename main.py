@@ -40,6 +40,7 @@ if user_input:
     
     
 
+info = None
 if st.button('Optimize'):
     x, y, info = optimize(rank, d, f,
      lower_grid_bound, upper_grid_bound,
@@ -51,11 +52,12 @@ if st.button('Optimize'):
     st.write(f"Min value of the function is: {y}")
 
 
-result_json = json.dumps(info)
+if info is not None:
+    result_json = json.dumps(info)
 # Add a download button
-st.download_button(
-    label="Download Result as JSON",
-    data=result_json,
-    file_name='result.json',
-    mime='application/json'
-)
+    st.download_button(
+        label="Download Result as JSON",
+        data=result_json,
+        file_name='result.json',
+        mime='application/json'
+    )
